@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Employee</h1>
+    <div th:if="${message}">
+        <span style="color:red;" th:text="${message}"></span>
+    </div>
+    <div>
+        <a th:href="@{/employee/create}">Create</a>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>EmployeeCode</th>
+                <th>Mame</th>
+                <th>Age</th>
+                <th>Salary</th>
+                <th>Department</th>
+                <th>Action</th>
+            </tr>
+            <tr th:each="e: ${employee}">
+                <td th:text="${e.employeeCode}"></td>
+                <td th:text="${e.name}"></td>
+                <td th:text="${e.age}"></td>
+                <td th:text="${e.salary}"></td>
+                <td th:text="${e.department.name}"></td>
+                <td>
+                    <a th:href="@{'/employee/update/' + ${e.id}}">Edit</a>
+                    <a th:href="@{'/employee/delete/' + ${e.id}}" onclick="return confirm('Ban Co Muon Xoa Khong?')">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
